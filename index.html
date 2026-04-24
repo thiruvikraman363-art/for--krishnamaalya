@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>For My Krishnamaalya ❤️</title>
+    <style>
+        :root { --maroon: #660708; --gold: #fdf0d5; --bright-red: #ba181b; }
+        
+        body { 
+            background: radial-gradient(circle, #800000 0%, #4a0404 100%);
+            font-family: 'Georgia', serif;
+            display: flex; flex-direction: column; align-items: center; justify-content: center;
+            height: 100vh; margin: 0; overflow: hidden; text-align: center; color: var(--gold);
+        }
+
+        /* Sparkles Background */
+        .bg-sparkle { position: absolute; background: white; border-radius: 50%; opacity: 0.3; animation: float 10s infinite linear; pointer-events: none; }
+        @keyframes float { from { transform: translateY(100vh) scale(0); } to { transform: translateY(-10vh) scale(1); } }
+
+        #message { font-size: 26px; font-weight: bold; margin: 20px; z-index: 10; min-height: 80px; transition: opacity 0.5s; }
+
+        /* Candle */
+        .candle-container { cursor: pointer; position: relative; z-index: 10; transition: 0.5s; }
+        .candle { width: 40px; height: 110px; background: var(--gold); border-radius: 8px; position: relative; border: 3px solid #a4133c; }
+        .flame { display: none; width: 26px; height: 45px; background: radial-gradient(circle at bottom, #fff 0%, #ffb703 50%, #fb8500 100%); border-radius: 50% 50% 20% 20%; position: absolute; top: -55px; left: 7px; box-shadow: 0 0 30px #fb8500; animation: flicker 0.1s infinite alternate; }
+
+        /* Gift Box */
+        #gift-area { display: none; margin-top: 30px; position: relative; perspective: 1000px; z-index: 10; }
+        .box { width: 160px; height: 140px; background: var(--maroon); border: 4px solid var(--gold); border-radius: 10px; position: relative; z-index: 5; cursor: pointer; animation: wobble 2s infinite; }
+        .box-lid { width: 176px; height: 40px; background: var(--bright-red); border: 4px solid var(--gold); position: absolute; top: -25px; left: -12px; z-index: 6; transition: 1s cubic-bezier(0.5, -0.5, 0.5, 1.5); }
+        .bear { font-size: 100px; position: absolute; bottom: 20px; left: 30px; transition: 1.2s cubic-bezier(0.175, 0.885, 0.32, 1.275); z-index: 2; opacity: 0; }
+
+        /* The Love Letter */
+        #letter {
+            display: none; position: absolute; width: 85%; max-width: 400px;
+            background: #fdf0d5; color: #4a0404; padding: 25px; border-radius: 5px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.8); z-index: 100;
+            font-family: 'Dancing Script', cursive, serif; font-size: 18px; line-height: 1.6;
+            transform: translateY(100vh); transition: transform 1.5s ease-out;
+            border: 2px solid #a4133c;
+        }
+
+        /* Animations */
+        .reveal .bear { bottom: 180px; opacity: 1; transform: scale(1.1); }
+        .reveal .box-lid { transform: translateY(-150px) rotate(25deg); opacity: 0; }
+        .show-letter #letter { transform: translateY(0); display: block; }
+        @keyframes flicker { from { transform: scale(1); } to { transform: scale(1.1); } }
+        @keyframes wobble { 0%, 100% { transform: rotate(0); } 25% { transform: rotate(3deg); } 75% { transform: rotate(-3deg); } }
+        
+        #music { position: absolute; left: -9999px; }
+    </style>
+    <link href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@600&display=swap" rel="stylesheet">
+</head>
+<body>
+
+    <div id="message">Hey Krishnamaalya... <br>Touch the candle to start ✨</div>
+
+    <div class="candle-container" id="candle-box" onclick="lightCandle()">
+        <div class="candle"><div class="flame" id="flame"></div></div>
+    </div>
+
+    <div id="gift-area" onclick="openGift()">
+        <div class="bear" id="bear">🧸</div>
+        <div class="box-lid"></div><div class="box"><div style="width:35px; height:140px; background:var(--gold); position:absolute; left:62px;"></div></div>
+        <p style="color: var(--gold); font-weight: bold; margin-top: 25px;">TAP YOUR SURPRISE 🎁</p>
+    </div>
+
+    <div id="letter">
+        Happy birthday female dostuu, you are my wonderful woman and one of the sweetest soul i ever watched. <br><br>
+        I love you more than you think. I will be your biggest supporter whatever happens. Hope this relationship lasts longer. <br><br>
+        Be happy, be proud of yourself, you are always my girl. Thank you for being, staying, healing which you not broken. ❤️
+    </div>
+
+    <iframe id="music" width="1" height="1" src="" frameborder="0" allow="autoplay"></iframe>
+
+    <script>
+        for(let i=0; i<20; i++) {
+            let s = document.createElement('div'); s.className = 'bg-sparkle';
+            s.style.width = s.style.height = Math.random() * 5 + 2 + 'px';
+            s.style.left = Math.random() * 100 + 'vw';
+            s.style.animationDelay = Math.random() * 10 + 's';
+            document.body.appendChild(s);
+        }
+
+        function lightCandle() {
+            document.getElementById('flame').style.display = 'block';
+            document.getElementById('message').innerText = "Make a wish, Krishnamaalya... 💭";
+            document.getElementById('music').src = "https://www.youtube.com/embed/S2C_P8v7y0w?autoplay=1";
+
+            setTimeout(() => {
+                document.getElementById('candle-box').style.display = 'none';
+                document.getElementById('gift-area').style.display = 'block';
+                document.getElementById('message').innerText = "Now, open your gift! 🎀";
+            }, 2500);
+        }
+
+        function openGift() {
+            if(document.body.classList.contains('reveal')) return;
+            document.getElementById('gift-area').classList.add('reveal');
+            document.getElementById('message').innerHTML = "HAPPY BIRTHDAY<br>KRISHNAMAALYA! ❤️";
+            
+            for(let i=0; i<40; i++) { setTimeout(createHeart, i * 80); }
+
+            // Show letter after bear animation
+            setTimeout(() => {
+                document.body.classList.add('show-letter');
+                document.getElementById('message').style.opacity = '0';
+            }, 3000);
+        }
+
+        function createHeart() {
+            const heart = document.createElement('div');
+            heart.style.position = 'absolute';
+            heart.innerText = ['❤️', '💖', '✨', '💝'][Math.floor(Math.random() * 4)];
+            heart.style.left = '50%'; heart.style.top = '40%';
+            heart.style.fontSize = Math.random() * 20 + 25 + 'px';
+            heart.style.transition = `all ${Math.random() * 2 + 2}s ease-out`;
+            document.body.appendChild(heart);
+            setTimeout(() => {
+                heart.style.left = (Math.random() * 160 - 30) + '%';
+                heart.style.top = (Math.random() * 100) + '%';
+                heart.style.opacity = '0';
+            }, 100);
+            setTimeout(() => heart.remove(), 4000);
+        }
+    </script>
+</body>
+</html>
