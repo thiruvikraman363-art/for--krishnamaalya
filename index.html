@@ -48,7 +48,8 @@
         @keyframes flicker { from { transform: scale(1); } to { transform: scale(1.1); } }
         @keyframes wobble { 0%, 100% { transform: rotate(0); } 25% { transform: rotate(3deg); } 75% { transform: rotate(-3deg); } }
         
-        #music { position: absolute; left: -9999px; }
+        /* Hidden Audio */
+        #music-player { display: none; }
     </style>
     <link href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@600&display=swap" rel="stylesheet">
 </head>
@@ -72,9 +73,14 @@
         Be happy, be proud of yourself, you are always my girl. Thank you for being, staying, healing which you not broken. ❤️
     </div>
 
-    <iframe id="music" width="1" height="1" src="" frameborder="0" allow="autoplay"></iframe>
+    <div id="music-container">
+        <iframe id="music-player" width="100" height="100" 
+        src="https://www.youtube.com/embed/S2C_P8v7y0w?enablejsapi=1" 
+        frameborder="0" allow="autoplay; encrypted-media"></iframe>
+    </div>
 
     <script>
+        // Sparkle background logic
         for(let i=0; i<20; i++) {
             let s = document.createElement('div'); s.className = 'bg-sparkle';
             s.style.width = s.style.height = Math.random() * 5 + 2 + 'px';
@@ -84,9 +90,13 @@
         }
 
         function lightCandle() {
+            // Show Flame
             document.getElementById('flame').style.display = 'block';
             document.getElementById('message').innerText = "Make a wish, Krishnamaalya... 💭";
-            document.getElementById('music').src = "https://www.youtube.com/embed/S2C_P8v7y0w?autoplay=1";
+            
+            // Start Music - Using a more robust way to trigger YouTube
+            let player = document.getElementById('music-player');
+            player.src += "&autoplay=1";
 
             setTimeout(() => {
                 document.getElementById('candle-box').style.display = 'none';
@@ -102,7 +112,6 @@
             
             for(let i=0; i<40; i++) { setTimeout(createHeart, i * 80); }
 
-            // Show letter after bear animation
             setTimeout(() => {
                 document.body.classList.add('show-letter');
                 document.getElementById('message').style.opacity = '0';
