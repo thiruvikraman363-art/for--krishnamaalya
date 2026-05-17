@@ -54,8 +54,14 @@
     <link href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@600&display=swap" rel="stylesheet">
 </head>
 <body>
-
-    <div id="message">Hey Krishnamaalya... <br>Touch the candle to start ✨</div>
+    <audio src="https://audio.jukehost.co.uk/OshKstqZInzYnveFidBwEIDg5R33wO47" autoplay loop id="bgm"></audio>
+<script>
+  document.addEventListener('click', function() {
+    var audio = document.getElementById('bgm');
+    if (audio.paused) { audio.play(); }
+  }, { once: true });
+</script>
+ <div id="message">Hey Krishnamaalya... <br>Touch the candle to start ✨</div>
 
     <div class="candle-container" id="candle-box" onclick="lightCandle()">
         <div class="candle"><div class="flame" id="flame"></div></div>
